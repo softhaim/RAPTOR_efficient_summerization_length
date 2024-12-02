@@ -1,35 +1,13 @@
-<!-- <p align="center">
-  <img align="center" src="raptor.jpg" width="1000px" />
-</p>
-<p align="left"> -->
+아래는 README 파일의 전체 내용을 한번에 복사하기 편하게 정리한 텍스트입니다:
 
-<!-- <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="raptor.jpg" width="1000px">
-  <source media="(prefers-color-scheme: light)" srcset="raptor_dark.png" width="1000px">
-  
-</picture> -->
+```
+# RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval
 
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="raptor_dark.png">
-  <img alt="Shows an illustrated sun in light color mode and a moon with stars in dark color mode." src="raptor.jpg">
-</picture>
+**RAPTOR**는 문서를 재귀적인 트리 구조로 구성하여 정보 검색의 효율성과 문맥 인식을 향상시키는 새로운 접근 방식을 소개합니다. 이는 전통적인 언어 모델의 일반적인 한계를 해결합니다.
 
-## RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval
+## 설치 방법
 
-**RAPTOR** introduces a novel approach to retrieval-augmented language models by constructing a recursive tree structure from documents. This allows for more efficient and context-aware information retrieval across large texts, addressing common limitations in traditional language models. 
-
-
-
-For detailed methodologies and implementations, refer to the original paper:
-
-- [RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval](https://arxiv.org/abs/2401.18059)
-
-[![Paper page](https://huggingface.co/datasets/huggingface/badges/resolve/main/paper-page-sm.svg)](https://huggingface.co/papers/2401.18059)
-[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/raptor-recursive-abstractive-processing-for/question-answering-on-quality)](https://paperswithcode.com/sota/question-answering-on-quality?p=raptor-recursive-abstractive-processing-for)
-
-## Installation
-
-Before using RAPTOR, ensure Python 3.8+ is installed. Clone the RAPTOR repository and install necessary dependencies:
+RAPTOR를 사용하기 전에 Python 3.8 이상이 설치되어 있는지 확인하세요. RAPTOR 저장소를 클론하고 필요한 의존성을 설치합니다:
 
 ```bash
 git clone https://github.com/parthsarthi03/raptor.git
@@ -37,13 +15,13 @@ cd raptor
 pip install -r requirements.txt
 ```
 
-## Basic Usage
+## 기본 사용법
 
-To get started with RAPTOR, follow these steps:
+RAPTOR를 시작하려면 다음 단계를 따르세요:
 
-### Setting Up RAPTOR
+### RAPTOR 설정
 
-First, set your OpenAI API key and initialize the RAPTOR configuration:
+먼저 OpenAI API 키를 설정하고 RAPTOR 구성을 초기화합니다:
 
 ```python
 import os
@@ -51,13 +29,13 @@ os.environ["OPENAI_API_KEY"] = "your-openai-api-key"
 
 from raptor import RetrievalAugmentation
 
-# Initialize with default configuration. For advanced configurations, check the documentation. [WIP]
+# 기본 구성으로 초기화합니다. 고급 구성에 대해서는 문서를 확인하세요. [WIP]
 RA = RetrievalAugmentation()
 ```
 
-### Adding Documents to the Tree
+### 문서 추가
 
-Add your text documents to RAPTOR for indexing:
+인덱싱을 위해 텍스트 문서를 RAPTOR에 추가합니다:
 
 ```python
 with open('sample.txt', 'r') as file:
@@ -65,9 +43,9 @@ with open('sample.txt', 'r') as file:
 RA.add_documents(text)
 ```
 
-### Answering Questions
+### 질문에 답하기
 
-You can now use RAPTOR to answer questions based on the indexed documents:
+인덱싱된 문서를 기반으로 질문에 답할 수 있습니다:
 
 ```python
 question = "How did Cinderella reach her happy ending?"
@@ -75,122 +53,48 @@ answer = RA.answer_question(question=question)
 print("Answer: ", answer)
 ```
 
-### Saving and Loading the Tree
+### 트리 저장 및 로드
 
-Save the constructed tree to a specified path:
+지정된 경로에 구성된 트리를 저장합니다:
 
 ```python
 SAVE_PATH = "demo/cinderella"
 RA.save(SAVE_PATH)
 ```
 
-Load the saved tree back into RAPTOR:
+저장된 트리를 RAPTOR에 다시 로드합니다:
 
 ```python
 RA = RetrievalAugmentation(tree=SAVE_PATH)
 answer = RA.answer_question(question=question)
 ```
 
+## 다른 모델과의 RAPTOR 확장
 
-### Extending RAPTOR with other Models
+RAPTOR는 유연하게 설계되어 요약, 질의응답(QA), 임베딩 생성을 위한 모든 모델과 통합할 수 있습니다. 다음은 RAPTOR를 사용자 모델과 통합하는 방법입니다:
 
-RAPTOR is designed to be flexible and allows you to integrate any models for summarization, question-answering (QA), and embedding generation. Here is how to extend RAPTOR with your own models:
+### 요약문 크기 및 top k 설정
 
-#### Custom Summarization Model
+이 코드는 QASPER 및 QuALITY 데이터셋에 대해 평가 코드를 구성합니다. 각 요약문의 크기 및 top k 개수를 조정하여 다양한 설정에 따른 실험을 할 수 있습니다.
 
-If you wish to use a different language model for summarization, you can do so by extending the `BaseSummarizationModel` class. Implement the `summarize` method to integrate your custom summarization logic:
-
-```python
-from raptor import BaseSummarizationModel
-
-class CustomSummarizationModel(BaseSummarizationModel):
-    def __init__(self):
-        # Initialize your model here
-        pass
-
-    def summarize(self, context, max_tokens=150):
-        # Implement your summarization logic here
-        # Return the summary as a string
-        summary = "Your summary here"
-        return summary
-```
-
-#### Custom QA Model
-
-For custom QA models, extend the `BaseQAModel` class and implement the `answer_question` method. This method should return the best answer found by your model given a context and a question:
+### 코드 예시
 
 ```python
-from raptor import BaseQAModel
-
-class CustomQAModel(BaseQAModel):
-    def __init__(self):
-        # Initialize your model here
-        pass
-
-    def answer_question(self, context, question):
-        # Implement your QA logic here
-        # Return the answer as a string
-        answer = "Your answer here"
-        return answer
+# 요약문 크기 및 top k 값을 조정하는 코드
+evaluate_summarization_length_variants(retrieval_augmented_model, 'test', 'path/to/base/output', 400, [25], 'path/to/final/output')
 ```
 
-#### Custom Embedding Model
+## 기여
 
-To use a different embedding model, extend the `BaseEmbeddingModel` class. Implement the `create_embedding` method, which should return a vector representation of the input text:
+RAPTOR는 오픈 소스 프로젝트이며 기여를 환영합니다. 버그 수정, 새로운 기능 추가, 문서 개선 등 여러분의 도움이 필요합니다.
 
-```python
-from raptor import BaseEmbeddingModel
+## 라이센스
 
-class CustomEmbeddingModel(BaseEmbeddingModel):
-    def __init__(self):
-        # Initialize your model here
-        pass
+RAPTOR는 MIT 라이센스하에 출시됩니다. 자세한 내용은 저장소의 LICENSE 파일을 참조하세요.
 
-    def create_embedding(self, text):
-        # Implement your embedding logic here
-        # Return the embedding as a numpy array or a list of floats
-        embedding = [0.0] * embedding_dim  # Replace with actual embedding logic
-        return embedding
-```
+## 인용
 
-#### Integrating Custom Models with RAPTOR
-
-After implementing your custom models, integrate them with RAPTOR as follows:
-
-```python
-from raptor import RetrievalAugmentation, RetrievalAugmentationConfig
-
-# Initialize your custom models
-custom_summarizer = CustomSummarizationModel()
-custom_qa = CustomQAModel()
-custom_embedding = CustomEmbeddingModel()
-
-# Create a config with your custom models
-custom_config = RetrievalAugmentationConfig(
-    summarization_model=custom_summarizer,
-    qa_model=custom_qa,
-    embedding_model=custom_embedding
-)
-
-# Initialize RAPTOR with your custom config
-RA = RetrievalAugmentation(config=custom_config)
-```
-
-Check out `demo.ipynb` for examples on how to specify your own summarization/QA models, such as Llama/Mistral/Gemma, and Embedding Models such as SBERT, for use with RAPTOR.
-
-Note: More examples and ways to configure RAPTOR are forthcoming. Advanced usage and additional features will be provided in the documentation and repository updates.
-
-## Contributing
-
-RAPTOR is an open-source project, and contributions are welcome. Whether you're fixing bugs, adding new features, or improving documentation, your help is appreciated.
-
-## License
-
-RAPTOR is released under the MIT License. See the LICENSE file in the repository for full details.
-
-## Citation
-
-If RAPTOR assists in your research, please cite it as follows:
+RAPTOR가 연구에 도움이 되었다면 다음과 같이 인용해 주세요:
 
 ```bibtex
 @inproceedings{sarthi2024raptor,
@@ -201,4 +105,5 @@ If RAPTOR assists in your research, please cite it as follows:
 }
 ```
 
-Stay tuned for more examples, configuration guides, and updates.
+더 많은 예제, 구성 가이드 및 업데이트를 기대해 주세요.
+```
