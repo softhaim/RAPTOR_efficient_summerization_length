@@ -1,6 +1,3 @@
-아래는 README 파일의 전체 내용을 한번에 복사하기 편하게 정리한 텍스트입니다:
-
-```
 # RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval
 
 **RAPTOR**는 문서를 재귀적인 트리 구조로 구성하여 정보 검색의 효율성과 문맥 인식을 향상시키는 새로운 접근 방식을 소개합니다. 이는 전통적인 언어 모델의 일반적인 한계를 해결합니다.
@@ -13,7 +10,6 @@ RAPTOR를 사용하기 전에 Python 3.8 이상이 설치되어 있는지 확인
 git clone https://github.com/parthsarthi03/raptor.git
 cd raptor
 pip install -r requirements.txt
-```
 
 ## 기본 사용법
 
