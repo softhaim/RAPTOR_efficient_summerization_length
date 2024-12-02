@@ -1,3 +1,4 @@
+
 # RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval
 
 **RAPTOR**는 문서를 재귀적인 트리 구조로 구성하여 정보 검색의 효율성과 문맥 인식을 향상시키는 새로운 접근 방식을 소개합니다. 이는 전통적인 언어 모델의 일반적인 한계를 해결합니다.
@@ -10,6 +11,7 @@ RAPTOR를 사용하기 전에 Python 3.8 이상이 설치되어 있는지 확인
 git clone https://github.com/parthsarthi03/raptor.git
 cd raptor
 pip install -r requirements.txt
+```
 
 ## 기본 사용법
 
@@ -65,13 +67,23 @@ RA = RetrievalAugmentation(tree=SAVE_PATH)
 answer = RA.answer_question(question=question)
 ```
 
-## 다른 모델과의 RAPTOR 확장
+## QASPER 및 QuALITY 데이터셋 평가
 
-RAPTOR는 유연하게 설계되어 요약, 질의응답(QA), 임베딩 생성을 위한 모든 모델과 통합할 수 있습니다. 다음은 RAPTOR를 사용자 모델과 통합하는 방법입니다:
+RAPTOR는 다양한 요약문 크기와 top k 개수 조정을 통해 QASPER 및 QuALITY 데이터셋에 대한 평가를 실행할 수 있습니다. 아래 예시 코드와 함께 명령어를 사용하여 평가를 시작할 수 있습니다.
 
-### 요약문 크기 및 top k 설정
+### 명령어 실행
 
-이 코드는 QASPER 및 QuALITY 데이터셋에 대해 평가 코드를 구성합니다. 각 요약문의 크기 및 top k 개수를 조정하여 다양한 설정에 따른 실험을 할 수 있습니다.
+QASPER 및 QuALITY 데이터셋 평가를 실행하기 위한 명령어 예시입니다:
+
+```bash
+python main.py --split_name test --base_output_path /path/to/base/output --final_output_path /path/to/final/output
+```
+
+이 명령어는 다음과 같은 인자들을 사용합니다:
+
+- `--split_name`: 평가할 데이터셋의 분할 이름 (예: 'test')
+- `--base_output_path`: 평가 결과를 저장할 기본 경로
+- `--final_output_path`: 최종 집계 결과를 저장할 경로
 
 ### 코드 예시
 
