@@ -1,7 +1,8 @@
 
-# RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval
+# Summarization Length Expansion and Optimization for Enhanced Efficiency in Long-Context RAG Models
 
-**RAPTOR**는 문서를 재귀적인 트리 구조로 구성하여 정보 검색의 효율성과 문맥 인식을 향상시키는 새로운 접근 방식을 소개합니다. 이는 전통적인 언어 모델의 일반적인 한계를 해결합니다.
+
+**RAPTOR**방법을 이용하여 요약문 최적화를 통해 더 효율적으로 문서를 재귀적인 트리 구조로 구성하여 정보 검색의 효율성과 문맥 인식을 향상시키는 새로운 접근 방식을 소개합니다. 이는 전통적인 언어 모델의 일반적인 한계를 해결합니다.
 
 ## 설치 방법
 
