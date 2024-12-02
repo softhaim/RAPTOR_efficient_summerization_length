@@ -93,17 +93,13 @@ python main.py --split_name test --base_output_path /path/to/base/output --final
 evaluate_summarization_length_variants(retrieval_augmented_model, 'test', 'path/to/base/output', 400, [25], 'path/to/final/output')
 ```
 
-## 기여
-
-RAPTOR는 오픈 소스 프로젝트이며 기여를 환영합니다. 버그 수정, 새로운 기능 추가, 문서 개선 등 여러분의 도움이 필요합니다.
-
 ## 라이센스
 
-RAPTOR는 MIT 라이센스하에 출시됩니다. 자세한 내용은 저장소의 LICENSE 파일을 참조하세요.
+RAPTOR는 MIT 라이센스하에 출시됩니다. 자세한 내용은 RAPTOR 저장소를 참고하세요. (https://github.com/parthsarthi03/raptor.git)
 
 ## 인용
 
-RAPTOR가 연구에 도움이 되었다면 다음과 같이 인용해 주세요:
+RAPTOR를 인용함에 따른 인용 표시
 
 ```bibtex
 @inproceedings{sarthi2024raptor,
@@ -112,7 +108,4 @@ RAPTOR가 연구에 도움이 되었다면 다음과 같이 인용해 주세요:
     booktitle={International Conference on Learning Representations (ICLR)},
     year={2024}
 }
-```
-
-더 많은 예제, 구성 가이드 및 업데이트를 기대해 주세요.
 ```
