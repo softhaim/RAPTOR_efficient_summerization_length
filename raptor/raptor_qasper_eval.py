@@ -243,8 +243,8 @@ if __name__ == "__main__":
     sbert_embedding_model = SBertEmbeddingModel(model_name="sentence-transformers/multi-qa-mpnet-base-cos-v1")
     llama_qa_model = LLaMAQAModel()
 
-    summarization_lengths = [400]
-    top_k_list = [25]
+    summarization_lengths = [100, 150, 200, 250, 300, 400, 500]
+    top_k_list = [10, 15, 20, 25]
 
     for length in summarization_lengths:
         ra_config = RetrievalAugmentationConfig(
